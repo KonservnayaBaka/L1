@@ -13,7 +13,6 @@ func NewPoint(x, y float64) Point {
 	return Point{x: x, y: y}
 }
 
-// Евклидово расстояние?
 func (p Point) Distance(other Point) float64 {
 	dx := p.x - other.x
 	dy := p.y - other.y

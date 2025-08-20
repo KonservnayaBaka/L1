@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+)
 
 func main() {
 	m := map[string]interface{}{}
@@ -13,6 +16,7 @@ func main() {
 	m["four"] = 4.4
 	m["five"] = ch
 
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	for k, v := range m {
 		switch val := v.(type) {
 		case int:
@@ -29,9 +33,15 @@ func main() {
 			fmt.Printf("chan string type in key - %s:%v\n", k, <-val)
 		case chan bool:
 			fmt.Printf("chan bool type in key - %s:%v\n", k, <-val)
+		}
 
+		/////////////////////////////////////////////reflect//////////////////////////////////////////////////////////////
+		t := reflect.TypeOf(v)
+		if t != nil {
+			fmt.Printf("Reflect: key %s has type %s\n", k, t.String())
+			if t.Kind() == reflect.Chan {
+				fmt.Printf("Reflect: it is a channel of %s\n", t.Elem().String())
+			}
 		}
 	}
-
-	close(ch)
 }
