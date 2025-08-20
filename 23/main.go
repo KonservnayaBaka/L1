@@ -11,7 +11,7 @@ func main() {
 
 	fmt.Println("Начальный массив: ", arr)
 
-	arr = append(arr[:i], arr[i+1:]...) //Утечки не будет если брать ссылки на удаленные элементы
+	arr = append(arr[:i], arr[i+1:]...)
 	fmt.Println("append: ", arr)
 	fmt.Printf("len=%d, cap=%d\n", len(arr), cap(arr))
 
